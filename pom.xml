@@ -101,6 +101,12 @@
             <artifactId>gson</artifactId>
             <version>2.9.0</version>
         </dependency>
+
+        <dependency>
+            <groupId>com.amazonaws</groupId>
+            <artifactId>aws-java-sdk</artifactId>
+            <version>1.11.163</version>
+        </dependency>
     </dependencies>
 
     <build>
@@ -139,9 +145,9 @@
                 <artifactId>flyway-maven-plugin</artifactId>
                 <version>8.0.0</version>
                 <configuration>
-                    <url>jdbc:mysql://localhost:3306/twitter</url>
-                    <user>root</user>
-                    <password>Slender123698745</password>
+                    <url>${DB_URL}</url>
+                    <user>admin</user>
+                    <password>123698745</password>
                     <schemas>
                         <schema>
                             twitter
@@ -149,7 +155,7 @@
                     </schemas>
                     <locations>
                         <location>
-                            /Users/gabitajtzan/Desktop/twitter/db/migrations
+                            ${PROJECT_HOME}/twitter/db/migrations
                         </location>
                     </locations>
                 </configuration>

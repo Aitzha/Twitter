@@ -10,14 +10,14 @@ spring:
           jwk-set-uri: http://localhost:8180/realms/Twitter/protocol/openid-connect/certs
   datasource:
     url: ${DB_URL}
-    username: root
-    password: Slender123698745
+    username: admin
+    password: 123698745
     driver-class-name: com.mysql.cj.jdbc.Driver
   flyway:
     url: ${DB_URL}
-    locations: filesystem:${HOME}/Desktop/twitter/db/migrations
-    user: root
-    password: Slender123698745
+    locations: filesystem:${PROJECT_HOME}/twitter/db/migrations
+    user: admin
+    password: 123698745
     schemas: twitter
   session:
     jdbc:
