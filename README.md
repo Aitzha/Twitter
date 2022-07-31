@@ -2,6 +2,14 @@ Twitter Project
 
 Twitter is Social Media that lets authenticated users create and manage tweets with media and manage followers.
 
+Enviroment variables needed:
+AWS_ACCESS_KEY
+AWS_SECRET_KEY
+PROJECT_HOME
+DB_URL
+DB_PASSWORD
+DB_USERNAME
+
 
 Technologies used in this project:
 Java
