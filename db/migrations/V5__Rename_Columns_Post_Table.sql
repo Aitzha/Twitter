@@ -1,0 +1,4 @@
+ALTER TABLE post DROP COLUMN text;
+ALTER TABLE post ADD COLUMN content text;
+ALTER TABLE post DROP COLUMN likesCount;
+ALTER TABLE post ADD COLUMN likes_count BIGINT;

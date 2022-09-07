@@ -1,0 +1,2 @@
+ALTER TABLE media DROP COLUMN name;
+ALTER TABLE media MODIFY COLUMN post_id text;

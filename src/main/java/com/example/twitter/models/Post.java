@@ -1,25 +1,27 @@
 package com.example.twitter.models;
 
+import com.example.twitter.common.IdGenerator;
+
 import javax.persistence.*;
 import java.util.Date;
-import java.util.List;
-import java.util.Optional;
 
 @Entity
 public class Post {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    public int id;
+    public String id;
     public String ownerId;
-    public String text;
-    public Date time;
+    public String content;
+    public Date postedDate;
+    public long likesCount;
 
     public Post() {}
 
-    public Post(String ownerId, String text) {
+    public Post(String id, String ownerId, String content) {
+        this.id = id;
         this.ownerId = ownerId;
-        this.text = text;
-        this.time = new Date();
+        this.content = content;
+        this.postedDate = new Date();
+        this.likesCount = 0;
     }
 
 }

@@ -1,5 +1,5 @@
 CREATE TABLE IF NOT EXISTS `post` (
-     `id` int NOT NULL AUTO_INCREMENT PRIMARY KEY,
+     `id` text(10),
      `ownerId` text,
      `text` text,
      `time` timestamp

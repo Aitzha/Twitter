@@ -8,16 +8,15 @@ import javax.persistence.Id;
 @Entity
 public class Media {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    int id;
+    public String id;
+    public String postId;
+    public String type;
 
-    int postId;
-    String type;
-    String name;
+    public Media() {}
 
-    public Media(int postId, String type, String name) {
+    public Media(String id, String postId, String type) {
+        this.id = id;
         this.postId = postId;
         this.type = type;
-        this.name = name;
     }
 }

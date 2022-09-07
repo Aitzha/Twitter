@@ -10,7 +10,7 @@ import java.util.List;
 import java.util.Optional;
 
 @Repository
-public interface PostRepository extends PagingAndSortingRepository<Post, Integer> {
+public interface PostRepository extends PagingAndSortingRepository<Post, String> {
     List<Post> findByOwnerId(String ownerId, Sort sort);
     List<Post> findByOwnerIdIn(List<String> ownerIds, Sort sort);
 }
