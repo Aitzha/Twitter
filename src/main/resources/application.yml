@@ -15,7 +15,7 @@ spring:
     driver-class-name: com.mysql.cj.jdbc.Driver
   flyway:
     url: jdbc:mysql://${DB_HOST}:3306/twitter
-    locations: filesystem:${PROJECT_HOME}/twitter/db/migrations
+    locations: filesystem:${PROJECT_HOME}/db/migrations
     user: ${DB_USERNAME}
     password: ${DB_PASSWORD}
     schemas: twitter

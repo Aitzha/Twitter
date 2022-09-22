@@ -10,7 +10,7 @@
     </parent>
     <groupId>com.example</groupId>
     <artifactId>twitter</artifactId>
-    <version>0.0.1-SNAPSHOT</version>
+    <version>0.0.5-SNAPSHOT</version>
     <name>twitter</name>
     <description>twitter similar project</description>
     <properties>
@@ -219,6 +219,22 @@
                         </location>
                     </locations>
                 </configuration>
+            </plugin>
+            <plugin>
+                <artifactId>maven-resources-plugin</artifactId>
+                <executions> <execution>
+                    <id>copy-resources</id>
+                    <phase>validate</phase>
+                    <goals><goal>copy-resources</goal></goals>
+                    <configuration> <outputDirectory>${PROJECT_HOME}/src/main/resources/static/</outputDirectory>
+                <resources>
+                    <resource>
+                        <directory>../angular-client/dist</directory>
+                    </resource>
+                </resources>
+            </configuration>
+            </execution>
+            </executions>
             </plugin>
         </plugins>
     </build>

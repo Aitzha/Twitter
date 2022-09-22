@@ -108,7 +108,7 @@ public class PostController {
                     break;
                 }
             }
-            File file = new File(System.getenv("PROJECT_HOME") + "/twitter/src/main/java/com/example/twitter/common/targetFile.tmp");
+            File file = new File(System.getenv("PROJECT_HOME") + "/src/main/java/com/example/twitter/common/targetFile.tmp");
             image.transferTo(file);
             s3client.putObject(bucketName, newImageId, file);
 
@@ -121,7 +121,7 @@ public class PostController {
         return "Saved";
     }
 
-    @CrossOrigin(origins = "http://localhost:4200")
+    @CrossOrigin(origins = "https://rocky-lowlands-32511.herokuapp.com/")
     @GetMapping
     public Iterable<PostDTO> getPosts() {
 
