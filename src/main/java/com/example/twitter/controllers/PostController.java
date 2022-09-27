@@ -79,11 +79,12 @@ public class PostController {
 
 
     //Had request header @RequestHeader("authorization") String jwtToken
+    @CrossOrigin(origins = "http://localhost:4200/")
     @PostMapping
     public String post(
             @RequestParam("text") String text,
             @RequestParam("fakeOwnerId") String fakeOwnerId,
-            @RequestParam("image") MultipartFile image) throws IOException, Exception {
+            @RequestParam(value = "image", required = false) MultipartFile image) throws IOException, Exception {
 
         //create new post and save it
         //find available id for new post
@@ -99,7 +100,7 @@ public class PostController {
 
 
         //save image in AWS S3
-        if(!image.isEmpty()) {
+        if(image != null && !image.isEmpty()) {
             //find available id for given image
             String newImageId;
             while(true) {
@@ -121,7 +122,8 @@ public class PostController {
         return "Saved";
     }
 
-    @CrossOrigin(origins = "https://rocky-lowlands-32511.herokuapp.com/")
+//    @CrossOrigin(origins = "https://rocky-lowlands-32511.herokuapp.com/")
+    @CrossOrigin(origins = "http://localhost:4200/")
     @GetMapping
     public Iterable<PostDTO> getPosts() {
 
