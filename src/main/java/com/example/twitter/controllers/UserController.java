@@ -1,6 +1,8 @@
 package com.example.twitter.controllers;
 
 import com.amazonaws.services.dynamodbv2.xspec.S;
+import com.example.twitter.models.User;
+import com.example.twitter.repositories.UserRepository;
 import org.springframework.web.bind.annotation.*;
 
 import javax.crypto.SecretKeyFactory;
@@ -11,6 +13,7 @@ import java.security.spec.InvalidKeySpecException;
 import java.security.spec.KeySpec;
 import java.util.Arrays;
 import java.util.Base64;
+import java.util.Optional;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -31,9 +34,12 @@ public class UserController {
 
     private final int cost;
 
-    public UserController() {
+    private final UserRepository userRepository;
+
+    public UserController(UserRepository userRepository) {
         this.cost = DEFAULT_COST;
         this.random = new SecureRandom();
+        this.userRepository = userRepository;
     }
 
     public String tempToken;
@@ -98,14 +104,26 @@ public class UserController {
 
 
     @PostMapping
-    public String Registration(@RequestParam("password") String password) {
-        tempToken = hash(password.toCharArray());
-        System.out.println(tempToken);
-        return "hashed";
+    public String Registration(@RequestParam("username") String username,
+                               @RequestParam("password") String password) {
+        Optional<User> user = userRepository.findById(username);
+        if(user.isPresent()) {
+            return "This username is already taken";
+        }
+        userRepository.save(new User(username, hash(password.toCharArray())));
+        return "You successfully registered";
     }
 
     @GetMapping
-    public boolean Login(@RequestParam("password") String password) {
-        return authenticate(password.toCharArray(), tempToken);
+    public String Login(@RequestParam("username") String username,
+                         @RequestParam("password") String password) {
+        Optional<User> user = userRepository.findById(username);
+        if(user.isPresent()) {
+            if(authenticate(password.toCharArray(), user.get().password)) {
+                return "You successfully logged in";
+            }
+            return "You entered wrong password";
+        }
+        return "Account with given username doesn't exist";
     }
 }
